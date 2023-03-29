@@ -1,0 +1,16 @@
+name: Validate Jira number in commit message
+on: push
+
+jobs:
+  validate_commit_message:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@v2
+    - name: Validate commit message
+      run: |
+        commit_message=$(git log -1 --pretty=format:%s)
+        regex='^[A-Z]{2,}-[0-9]+.*$'
+        if ! [[ $commit_message =~ $regex ]]; then
+          echo "Commit message does not start with a Jira number."
+          exit 1
+        fi
