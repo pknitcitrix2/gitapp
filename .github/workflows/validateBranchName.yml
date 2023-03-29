@@ -1,0 +1,19 @@
+name: Validate Head Ref Branch Name
+
+on:
+  pull_request:
+    types: [opened, edited, reopened]
+
+jobs:
+  validate-head-ref-branch-name:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Check branch name
+        run: |
+          branch_name=$(echo "${{ github.head_ref }}")
+          if [[ "$branch_name" =~ ^[a-z]+[a-z0-9]*$ ]]; then
+            echo "Head ref branch name is valid: $branch_name"
+          else
+            echo "Error: Head ref branch name '$branch_name' is not valid. Branch names must start with a lowercase letter and may only contain lowercase letters, numbers."
+            exit 1
+          fi
