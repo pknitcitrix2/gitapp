@@ -1,5 +1,5 @@
 name: Validate Jira number in commit message
-on: pull_request
+on: push
 
 jobs:
   validate_commit_message:
@@ -10,6 +10,7 @@ jobs:
       run: |
         commit_message=$(git log -1 --pretty=format:%s)
         regex='^[A-Z]{3,}-[0-9]{5,}+.*$'
+        echo "commit message is:$commit_message"
         if ! [[ $commit_message =~ $regex ]]; then
           echo "Commit message does not start with a Jira number."
           exit 1
