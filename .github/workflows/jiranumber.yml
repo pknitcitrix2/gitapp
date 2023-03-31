@@ -1,5 +1,5 @@
 name: Validate Jira number in commit message
-on: pull_request
+on: push
 
 jobs:
   validate_commit_message:
