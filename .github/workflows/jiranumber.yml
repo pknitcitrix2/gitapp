@@ -9,7 +9,7 @@ jobs:
     - name: Validate commit message
       run: |
         commit_message=$(git log -1 --pretty=format:%s)
-        regex='^[A-Z]{2,}-[0-9]+.*$'
+        regex='^[A-Z]{3,}-[0-9]{5,}+.*$'
         if ! [[ $commit_message =~ $regex ]]; then
           echo "Commit message does not start with a Jira number."
           exit 1
