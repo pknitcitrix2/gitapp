@@ -3,7 +3,7 @@ on: push
 
 jobs:
   validate_commit_message:
-    runs-on: ubuntu-latest
+    runs-on: win11_runner
     steps:
     - uses: actions/checkout@v2
     - name: Validate commit message
